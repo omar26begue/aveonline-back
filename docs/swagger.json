@@ -1,0 +1,357 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Back Aveonline",
+        "title": "Back Aveonline",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "Omar Isalgué Begue",
+            "email": "omar26begue@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "host": "localhost:8081",
+    "basePath": "/v1",
+    "paths": {
+        "/invoice": {
+            "get": {
+                "description": "Create the about information of the application.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Invoice"
+                ],
+                "summary": "Invoice",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/invoice.Invoice"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.HTTPResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create the about information of the application.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Invoice"
+                ],
+                "summary": "Create",
+                "parameters": [
+                    {
+                        "description": "Invoice",
+                        "name": "about",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/invoice.Invoice"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/invoice.Invoice"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.HTTPResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/medicine": {
+            "get": {
+                "description": "Create the about information of the application.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Medicine"
+                ],
+                "summary": "Medicine",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/medicine.Medicine"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.HTTPResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create the about information of the application.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Medicine"
+                ],
+                "summary": "medicine",
+                "parameters": [
+                    {
+                        "description": "Medicine",
+                        "name": "medicine",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/medicine.MedicineRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/medicine.Medicine"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.HTTPResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/promotion": {
+            "get": {
+                "description": "Create the about information of the application.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Promotion"
+                ],
+                "summary": "Promotion",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/promotion.Promocion"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.HTTPResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create the about information of the application.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Promotion"
+                ],
+                "summary": "Promotion",
+                "parameters": [
+                    {
+                        "description": "Promocion",
+                        "name": "promotion",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/promotion.PromocionRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/promotion.Promocion"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.HTTPResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "invoice.Invoice": {
+            "type": "object",
+            "properties": {
+                "fecha_creacion": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "id_promotion": {
+                    "type": "integer"
+                },
+                "medicines": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/medicine.Medicine"
+                    }
+                },
+                "pago_total": {
+                    "type": "number"
+                },
+                "promotion": {
+                    "$ref": "#/definitions/promotion.Promocion"
+                }
+            }
+        },
+        "medicine.Medicine": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number"
+                }
+            }
+        },
+        "medicine.MedicineRequest": {
+            "type": "object",
+            "required": [
+                "location",
+                "name",
+                "price"
+            ],
+            "properties": {
+                "location": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number"
+                }
+            }
+        },
+        "models.HTTPResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "promotion.Promocion": {
+            "type": "object",
+            "properties": {
+                "descripcion": {
+                    "type": "string"
+                },
+                "fecha_fin": {
+                    "type": "string"
+                },
+                "fecha_inicio": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "porcentaje": {
+                    "type": "number"
+                }
+            }
+        },
+        "promotion.PromocionRequest": {
+            "type": "object",
+            "required": [
+                "descripcion",
+                "fecha_fin",
+                "fecha_inicio",
+                "porcentaje"
+            ],
+            "properties": {
+                "descripcion": {
+                    "type": "string",
+                    "example": "Prueba"
+                },
+                "fecha_fin": {
+                    "type": "string",
+                    "example": "2021-12-07"
+                },
+                "fecha_inicio": {
+                    "type": "string",
+                    "example": "2021-12-05"
+                },
+                "porcentaje": {
+                    "type": "number",
+                    "maximum": 70,
+                    "example": 1.5
+                }
+            }
+        }
+    }
+}
