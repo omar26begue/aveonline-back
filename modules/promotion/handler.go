@@ -99,3 +99,5 @@ func (h Handler) Create(c *fiber.Ctx) error {
 
 	return json.NewEncoder(c.Status(fiber.StatusOK).Type("json", "utf-8").Response().BodyWriter()).Encode(dataPromotion)
 }
+
+

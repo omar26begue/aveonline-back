@@ -17,6 +17,17 @@ definitions:
       promotion:
         $ref: '#/definitions/promotion.Promocion'
     type: object
+  invoice.InvoiceRequest:
+    properties:
+      id_promotion:
+        type: integer
+      medicines:
+        items:
+          type: integer
+        type: array
+      pago_total:
+        type: number
+    type: object
   medicine.Medicine:
     properties:
       id:
@@ -126,7 +137,7 @@ paths:
         name: about
         required: true
         schema:
-          $ref: '#/definitions/invoice.Invoice'
+          $ref: '#/definitions/invoice.InvoiceRequest'
       produces:
       - application/json
       responses:
@@ -141,6 +152,38 @@ paths:
           schema:
             $ref: '#/definitions/models.HTTPResponse'
       summary: Create
+      tags:
+      - Invoice
+  /invoice/{start}/{end}:
+    get:
+      consumes:
+      - application/json
+      description: Create the about information of the application.
+      parameters:
+      - description: Start
+        in: path
+        name: start
+        required: true
+        type: string
+      - description: End
+        in: path
+        name: start
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/invoice.Invoice'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.HTTPResponse'
+      summary: Invoice
       tags:
       - Invoice
   /medicine:

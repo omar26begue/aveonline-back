@@ -38,7 +38,7 @@ func (r Repository) Create(promotion Promocion) (*Promocion, error) {
 
 func (r Repository) SearchDate(inicio, fin time.Time) (*[]Promocion, error) {
 	var data []Promocion
-	result := r.db.Debug().Model(Promocion{}).Where("fecha_inicio >= ? OR fecha_fin <= ?", inicio, fin).Find(&data)
+	result := r.db.Debug().Model(Promocion{}).Where("fecha_inicio >= ? AND fecha_fin <= ?", inicio, fin).Find(&data)
 	if result.Error != nil {
 		log.Fatal(result.Error)
 		return nil, gorm.ErrRecordNotFound

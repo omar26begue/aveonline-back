@@ -7,10 +7,21 @@ import (
 )
 
 type Invoice struct {
-	Id            uint                `json:"id" gorm:"primaryKey;auto_increment"`
-	FechaCreacion time.Time           `json:"fecha_creacion" gorm:"not null"`
-	PagoTotal     float32             `json:"pago_total" gorm:"not null"`
-	IdPromotion   uint                `json:"id_promotion" gorm:"not null"`
-	Promotion     promotion.Promocion `gorm:"foreignKey:id_promotion"`
-	Medicines     []medicine.Medicine `json:"medicines" gorm:"many2many:invoice_medicines"`
+	Id            uint                 `json:"id" gorm:"primaryKey;auto_increment"`
+	FechaCreacion time.Time            `json:"fecha_creacion" gorm:"not null"`
+	PagoTotal     float32              `json:"pago_total" gorm:"not null"`
+	IdPromotion   uint                 `json:"id_promotion" gorm:"not null"`
+	Promotion     promotion.Promocion  `gorm:"foreignKey:id_promotion"`
+	Medicines     *[]medicine.Medicine `json:"medicines" gorm:"many2many:invoice_medicines"`
+}
+
+type InvoiceRequest struct {
+	PagoTotal   float32 `json:"pago_total"`
+	IdPromotion uint    `json:"id_promotion"`
+	Medicines   []uint  `json:"medicines"`
+}
+
+type Payment struct {
+	Date  string  `json:"fecha"`
+	Total float64 `json:"total"`
 }

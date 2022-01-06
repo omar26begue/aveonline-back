@@ -81,13 +81,61 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/invoice.Invoice"
+                            "$ref": "#/definitions/invoice.InvoiceRequest"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
                         "description": "Created",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/invoice.Invoice"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.HTTPResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/invoice/{start}/{end}": {
+            "get": {
+                "description": "Create the about information of the application.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Invoice"
+                ],
+                "summary": "Invoice",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Start",
+                        "name": "start",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "End",
+                        "name": "start",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
                         "schema": {
                             "type": "array",
                             "items": {
@@ -269,6 +317,23 @@ var doc = `{
                 },
                 "promotion": {
                     "$ref": "#/definitions/promotion.Promocion"
+                }
+            }
+        },
+        "invoice.InvoiceRequest": {
+            "type": "object",
+            "properties": {
+                "id_promotion": {
+                    "type": "integer"
+                },
+                "medicines": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "pago_total": {
+                    "type": "number"
                 }
             }
         },

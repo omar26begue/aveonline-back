@@ -24,6 +24,7 @@ func Routers(app *fiber.App, repoInvoice *invoice.Repository, repoPromotion *pro
 
 		apiV1.Get("/invoice", rInvoice.ListInvoice)
 		apiV1.Post("/invoice", rInvoice.CreateInvoice)
+		apiV1.Get("/invoice/:start/:end", rInvoice.GetInvoice)
 
 		apiV1.Get("/medicine", rMedicine.ListMedicine)
 		apiV1.Post("/medicine", rMedicine.Create)
